@@ -14,10 +14,16 @@ public class UserLogic
     static DataAccessShopDatabase dasb = new DataAccessShopDatabase();
 
     public static Nullable updatePassword(String sessionId, String oldPass, String newPass ) {
+        if ( !oldPass.equals( dasb.getPassword(dasb.getUserId( sessionId ) ) ) ) {
+            throw new BadRequestException(Response.status(Response.Status.BAD_REQUEST).entity("Das alte " +
+                    "Nutzerkennwort ist nicht korrekt.").build());
+        }
+
         if ( !isValidPassword(oldPass, newPass ) ) {
             throw new BadRequestException(Response.status(Response.Status.BAD_REQUEST).entity("Das Nutzerkennwort " +
                     "erfüllt nicht alle Anforderungen oder unterscheidet sich nicht vom alten.").build());
         }
+
         dasb.putPassword(newPass, dasb.getUserId( sessionId ));
         return null;
     }

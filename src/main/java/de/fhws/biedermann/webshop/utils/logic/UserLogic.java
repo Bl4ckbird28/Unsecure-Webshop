@@ -24,7 +24,7 @@ public class UserLogic
 
     public static boolean isValidPassword(String oldPass, String newPass) {
 
-        if ( oldPass.equals(newPass) || newPass.length() < 7 ) {
+        if ( oldPass.equals(newPass) || newPass.length() < 8 ) {
             return false;
         }
 

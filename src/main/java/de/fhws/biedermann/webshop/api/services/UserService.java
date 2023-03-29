@@ -5,6 +5,7 @@ import de.fhws.biedermann.webshop.models.*;
 import de.fhws.biedermann.webshop.utils.*;
 import de.fhws.biedermann.webshop.utils.handler.DataHandler;
 import de.fhws.biedermann.webshop.utils.logic.AuthenticationLogic;
+import de.fhws.biedermann.webshop.utils.logic.UserLogic;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -326,20 +327,18 @@ import static de.fhws.biedermann.webshop.api.states.UserState.createNewUser;
 	}
 
 	@Path("password")
-	@Consumes(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@PUT
 	public Response modifyPassword(
-		@HeaderParam("sessionid") String session,
-		final String password)
-	{
-		// TODO something with password here
-		//toDO get user with sessionid
-		// modify in database
+			@HeaderParam("sessionid") String session,
+			@HeaderParam( "uuid" ) final String uuid,
+			final UpdatePasswordPayload updatePasswordPayload) {
 		return new UserState.Builder()
-			.withSession( session )
-			.defineResponseBody( password )
-			.build()
-			.ok();
+				.withUuid( uuid )
+				.withSession( session )
+				.defineResponseBody(UserLogic.updatePassword( session, updatePasswordPayload.getOldPassword(), updatePasswordPayload.getNewPassword() ))
+				.build()
+				.noContent();
 	}
 
 	@Path( "me" )

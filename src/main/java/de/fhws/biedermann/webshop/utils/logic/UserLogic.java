@@ -30,7 +30,7 @@ public class UserLogic
 
     public static boolean isValidPassword(String oldPass, String newPass) {
 
-        if ( oldPass.equals(newPass) || newPass.length() < 8 ) {
+        if ( oldPass.equals(newPass) || newPass.length() < 8 || newPass.length() > 40 ) { // Passwort ist maximal nur 40 Zeichen lang
             return false;
         }
 

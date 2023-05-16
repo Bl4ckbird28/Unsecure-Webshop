@@ -45,22 +45,11 @@ public class UserLogicBoundaryTest {
                     "uebergebenen Parameter ueberein" );
         }
 
-        String newPass = "";
-        for ( int i = 0; i < uppercaseCount; i++ ) {
-            newPass += "A";
-        }
-        for ( int i = 0; i < numCount; i++ ) {
-            newPass += "1";
-        }
-        for ( int i = 0; i < specialCharCount; i++ ) {
-            newPass += "!";
-        }
-
         int lowercaseCount = stringLength - testCharLength;
-        for ( int i = 0; i < lowercaseCount; i++ ) {
-            newPass += "b";
-        }
-        return newPass;
+        return "A".repeat(Math.max(0, uppercaseCount)) +
+                "1".repeat(Math.max(0, numCount)) +
+                "!".repeat(Math.max(0, specialCharCount)) +
+                "b".repeat(Math.max(0, lowercaseCount));
     }
 
 }

@@ -1,12 +1,18 @@
 package utils.logic;
 
 import de.fhws.biedermann.webshop.utils.logic.UserLogic;
+import org.junit.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserLogicParameterizedTest {
+
+    @Test
+    public void empty_test() {
+        // empty test for GitHub-Action
+    }
 
     @ParameterizedTest
     @CsvSource({

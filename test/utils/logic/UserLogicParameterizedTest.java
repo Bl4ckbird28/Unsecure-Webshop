@@ -11,7 +11,7 @@ public class UserLogicParameterizedTest {
 
     @Test
     public void empty_test() {
-        // empty test for GitHub-Action
+        assertTrue(true);
     }
 
     @ParameterizedTest

@@ -6,11 +6,11 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: github-actions-workflow
 
 on:
   push:
-    branches: [ master ]
+    branches: [ github-actions-test ]
 
 jobs:
   build:

@@ -6,11 +6,11 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: github-actions-workflow
+name: Java CI with Maven
 
 on:
   push:
-    branches: [github-actions-test]
+    branches: [ master ]
 
 jobs:
   build:
@@ -33,4 +33,4 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build and test with Maven
-        run: mvn --batch-mode --errors --fail-at-end --show-version --no-transfer-progress -DinstallAtEnd=true -DdeployAtEnd=true clean test       
+        run: mvn -B test --file pom.xml

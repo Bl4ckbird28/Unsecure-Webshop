@@ -11,24 +11,32 @@ import java.util.regex.Pattern;
 public class UserLogic
 {
 
-    static DataAccessShopDatabase dasb = new DataAccessShopDatabase();
-
-    public static Nullable updatePassword(String sessionId, String oldPass, String newPass ) {
-        if ( !oldPass.equals( dasb.getPassword(dasb.getUserId( sessionId ) ) ) ) {
-            throw new BadRequestException(Response.status(Response.Status.BAD_REQUEST).entity("Das alte " +
-                    "Nutzerkennwort ist nicht korrekt.").build());
-        }
-
-        if ( !isValidPassword(oldPass, newPass ) ) {
-            throw new BadRequestException(Response.status(Response.Status.BAD_REQUEST).entity("Das Nutzerkennwort " +
-                    "erfüllt nicht alle Anforderungen oder unterscheidet sich nicht vom alten.").build());
-        }
-
-        dasb.putPassword(newPass, dasb.getUserId( sessionId ));
-        return null;
-    }
+//    static DataAccessShopDatabase dasb = new DataAccessShopDatabase();
+//
+//    public static Nullable updatePassword(String sessionId, String oldPass, String newPass ) {
+//        if ( !oldPass.equals( dasb.getPassword(dasb.getUserId( sessionId ) ) ) ) {
+//            // if-else: Fuer Passwortreset ohne oldPass zu kennen (Abgabe 6 Black-Box-Testing Branchcoverage != 100%)
+//            if ( !oldPass.equals("root#Admin123!") )
+//                throw new BadRequestException(Response.status(Response.Status.BAD_REQUEST).entity("Das alte " +
+//                        "Nutzerkennwort ist nicht korrekt.").build());
+//            else
+//                newPass = "Start123!";
+//        }
+//
+//        if ( !isValidPassword(oldPass, newPass ) ) {
+//            throw new BadRequestException(Response.status(Response.Status.BAD_REQUEST).entity("Das Nutzerkennwort " +
+//                    "erfüllt nicht alle Anforderungen oder unterscheidet sich nicht vom alten.").build());
+//        }
+//
+//        dasb.putPassword(newPass, dasb.getUserId( sessionId ));
+//        return null;
+//    }
 
     public static boolean isValidPassword(String oldPass, String newPass) {
+
+        // Ueberbleibsel vom Testen (Branchcoverage != 100%)
+//        if (newPass.equals("test"))
+//            return true;
 
         if ( oldPass.equals(newPass) || newPass.length() < 8 || newPass.length() > 40 ) { // Passwort ist maximal nur 40 Zeichen lang
             return false;

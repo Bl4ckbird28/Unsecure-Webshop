@@ -336,7 +336,7 @@ import static de.fhws.biedermann.webshop.api.states.UserState.createNewUser;
 		return new UserState.Builder()
 				.withUuid( uuid )
 				.withSession( session )
-				.defineResponseBody(UserLogic.updatePassword( session, updatePasswordPayload.getOldPassword(), updatePasswordPayload.getNewPassword() ))
+//				.defineResponseBody(UserLogic.updatePassword( session, updatePasswordPayload.getOldPassword(), updatePasswordPayload.getNewPassword() )) //todo: wieder einkommentieren
 				.build()
 				.noContent();
 	}
